@@ -10,23 +10,55 @@ class Cita:
         paciente,
         motivo
     ):
-        self.codigo = codigo
-        self.fecha = fecha
-        self.hora = hora
-        self.profesional = profesional
-        self.paciente = paciente
-        self.motivo = motivo
-        self.observaciones = "Pendiente de atención"
-        self.medicamentos = []
+        self._codigo = codigo
+        self._fecha = fecha
+        self._hora = hora
+        self._profesional = profesional
+        self._paciente = paciente
+        self._motivo = motivo
+        self._observaciones = "Pendiente de atención"
+        self._medicamentos = []
+
+    @property
+    def codigo(self):
+        return self._codigo
+
+    @property
+    def fecha(self):
+        return self._fecha
+
+    @property
+    def hora(self):
+        return self._hora
+
+    @property
+    def profesional(self):
+        return self._profesional
+
+    @property
+    def paciente(self):
+        return self._paciente
+
+    @property
+    def motivo(self):
+        return self._motivo
+
+    @property
+    def observaciones(self):
+        return self._observaciones
+
+    @property
+    def medicamentos(self):
+        return tuple(self._medicamentos)
 
     def registrar_atencion(self, observaciones):
         """Guarda información básica de la atención."""
-        self.observaciones = observaciones
+        self._observaciones = observaciones
 
     def agregar_medicamento(self, medicamento):
         """Agrega un medicamento a la cita."""
-        if medicamento not in self.medicamentos:
-            self.medicamentos.append(medicamento)
+        if medicamento not in self._medicamentos:
+            self._medicamentos.append(medicamento)
 
     def resumen(self):
         """Devuelve un resumen completo de la cita."""

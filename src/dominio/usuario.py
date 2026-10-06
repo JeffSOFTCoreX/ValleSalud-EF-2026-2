@@ -14,9 +14,21 @@ class Usuario:
                 "El nombre del usuario es obligatorio."
             )
 
-        self.identificacion = identificacion.strip().upper()
-        self.nombre = nombre.strip()
-        self.rol = rol
+        self._identificacion = identificacion.strip().upper()
+        self._nombre = nombre.strip()
+        self._rol = rol
+
+    @property
+    def identificacion(self):
+        return self._identificacion
+
+    @property
+    def nombre(self):
+        return self._nombre
+
+    @property
+    def rol(self):
+        return self._rol
 
     def tiene_permiso(self, permiso):
         """

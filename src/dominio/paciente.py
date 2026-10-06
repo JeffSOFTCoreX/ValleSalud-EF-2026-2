@@ -16,27 +16,71 @@ class Paciente:
         edad,
         telefono
     ):
-        self.identificacion = validar_identificacion(
+        self._identificacion = validar_identificacion(
             identificacion
         )
 
-        self.nombre = validar_nombre(
+        self._nombre = validar_nombre(
             nombre
         )
 
-        self.edad = validar_edad(
+        self._edad = validar_edad(
             edad
         )
 
-        self.telefono = validar_telefono(
+        self._telefono = validar_telefono(
             telefono
         )
 
-        self.citas = []
+        self._citas = []
+
+    @property
+    def identificacion(self):
+        return self._identificacion
+
+    @identificacion.setter
+    def identificacion(self, valor):
+        self._identificacion = validar_identificacion(
+            valor
+        )
+
+    @property
+    def nombre(self):
+        return self._nombre
+
+    @nombre.setter
+    def nombre(self, valor):
+        self._nombre = validar_nombre(
+            valor
+        )
+
+    @property
+    def edad(self):
+        return self._edad
+
+    @edad.setter
+    def edad(self, valor):
+        self._edad = validar_edad(
+            valor
+        )
+
+    @property
+    def telefono(self):
+        return self._telefono
+
+    @telefono.setter
+    def telefono(self, valor):
+        self._telefono = validar_telefono(
+            valor
+        )
+
+    @property
+    def citas(self):
+        return tuple(self._citas)
 
     def agregar_cita(self, cita):
-        if cita not in self.citas:
-            self.citas.append(cita)
+        if cita not in self._citas:
+            self._citas.append(cita)
 
     def cantidad_citas(self):
         return len(self.citas)

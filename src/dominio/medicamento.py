@@ -2,9 +2,21 @@ class Medicamento:
     """Representa un medicamento que puede registrarse en una cita."""
 
     def __init__(self, nombre, dosis, frecuencia):
-        self.nombre = nombre
-        self.dosis = dosis
-        self.frecuencia = frecuencia
+        self._nombre = nombre
+        self._dosis = dosis
+        self._frecuencia = frecuencia
+
+    @property
+    def nombre(self):
+        return self._nombre
+
+    @property
+    def dosis(self):
+        return self._dosis
+
+    @property
+    def frecuencia(self):
+        return self._frecuencia
 
     def indicacion(self):
         """Devuelve la indicación del medicamento."""
