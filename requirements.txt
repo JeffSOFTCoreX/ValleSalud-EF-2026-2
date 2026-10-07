@@ -1,1 +1,2 @@
-# Agregar aquí únicamente las dependencias realmente utilizadas.
+# ValleSalud no requiere dependencias externas.
+# El proyecto utiliza unicamente la biblioteca estandar de Python 3.x.
