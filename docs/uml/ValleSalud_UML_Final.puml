@@ -1,0 +1,86 @@
+@startuml ValleSalud_UML_Final
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+hide empty members
+
+class Paciente {
+  -_identificacion: str
+  -_nombre: str
+  -_edad: int
+  -_telefono: str
+  -_citas: list[Cita]
+  --
+  +identificacion: str
+  +nombre: str
+  +edad: int
+  +telefono: str
+  +citas: tuple[Cita]
+  +agregar_cita(cita)
+  +cantidad_citas(): int
+  +__str__(): str
+}
+class Cita {
+  -_codigo: str
+  -_fecha: str
+  -_hora: str
+  -_profesional: str
+  -_paciente: Paciente
+  -_motivo: str
+  -_observaciones: str
+  -_medicamentos: list[Medicamento]
+  --
+  +codigo, fecha, hora, profesional,
+  paciente, motivo, observaciones,
+  medicamentos (propiedades de lectura)
+  +registrar_atencion(observaciones)
+  +agregar_medicamento(medicamento)
+  +resumen(): str
+  +__str__(): str
+}
+class Medicamento {
+  -_nombre: str
+  -_dosis: str
+  -_frecuencia: str
+  --
+  +nombre: str
+  +dosis: str
+  +frecuencia: str
+  +indicacion(): str
+  +__str__(): str
+}
+class Usuario {
+  -_identificacion: str
+  -_nombre: str
+  -_rol: str
+  --
+  +identificacion: str
+  +nombre: str
+  +rol: str
+  +tiene_permiso(permiso): bool
+  +__str__(): str
+}
+class UsuarioAdministrativo {
+  +tiene_permiso(permiso): bool
+}
+class UsuarioAsistencial {
+  +tiene_permiso(permiso): bool
+}
+class UsuarioFactory <<Factory>> {
+  +crear_usuario(rol, identificacion, nombre): Usuario
+}
+class ConexionSingleton <<Singleton>> {
+  -_instancia
+  -_conexion
+  --
+  +__new__()
+  +obtener_conexion()
+  +cerrar_conexion()
+}
+
+UsuarioAdministrativo --|> Usuario
+UsuarioAsistencial --|> Usuario
+Paciente "1" -- "0..*" Cita
+Cita "1" o-- "0..*" Medicamento
+UsuarioFactory ..> UsuarioAdministrativo : crea
+UsuarioFactory ..> UsuarioAsistencial : crea
+@enduml
