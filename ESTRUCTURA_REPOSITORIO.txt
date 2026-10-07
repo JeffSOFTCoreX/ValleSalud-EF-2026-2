@@ -1,48 +1,198 @@
-ValleSalud_Repositorio_Base/
-    .gitignore
-    INSTRUCCIONES_EQUIPO.md
-    README.md
-    requirements.txt
-    tests/
-        __init__.py
-        test_consultas.py
-        test_dominio.py
-        test_validaciones.py
-    docs/
-        uml/
-            .gitkeep
-        informe/
-            .gitkeep
-        declaracion_ia/
-            .gitkeep
-        evidencias/
-            .gitkeep
-    data/
-        .gitkeep
-    src/
-        __init__.py
-        main.py
-        eventos/
-            __init__.py
-            eventos.py
-        persistencia/
-            __init__.py
-            conexion.py
-            repositorios.py
-        patrones/
-            __init__.py
-            singleton_db.py
-            usuario_factory.py
-        dominio/
-            __init__.py
-            atencion.py
-            cita.py
-            medicamento.py
-            medico.py
-            paciente.py
-            usuario.py
-        servicios/
-            __init__.py
-            filtros.py
-            reportes.py
-            validaciones.py
+ESTRUCTURA FINAL DEL REPOSITORIO
+Sistema ValleSalud
+Lenguajes de Programación - 2026-2
+
+
+ValleSalud-EF-2026-2/
+│
+├── README.md
+├── requirements.txt
+├── ESTRUCTURA_REPOSITORIO.txt
+├── INSTRUCCIONES_EQUIPO.md
+│
+├── src/
+│   ├── __init__.py
+│   ├── main.py
+│   │
+│   ├── dominio/
+│   │   ├── __init__.py
+│   │   ├── cita.py
+│   │   ├── medicamento.py
+│   │   ├── paciente.py
+│   │   └── usuario.py
+│   │
+│   ├── patrones/
+│   │   ├── __init__.py
+│   │   ├── singleton_db.py
+│   │   └── usuario_factory.py
+│   │
+│   ├── persistencia/
+│   │   ├── __init__.py
+│   │   ├── conexion.py
+│   │   └── repositorios.py
+│   │
+│   └── servicios/
+│       ├── __init__.py
+│       ├── filtros.py
+│       ├── reportes.py
+│       └── validaciones.py
+│
+├── tests/
+│   ├── __init__.py
+│   ├── test_consultas.py
+│   ├── test_dominio.py
+│   ├── test_patrones.py
+│   ├── test_persistencia.py
+│   └── test_validaciones.py
+│
+└── docs/
+    │
+    ├── declaracion_ia/
+    │   ├── .gitkeep
+    │   └── Declaración de uso de Inteligencia Artificial_Desafíos.docx
+    │
+    ├── evidencias/
+    │   ├── .gitkeep
+    │   ├── 01b_ejecucion_main_final.jpg
+    │   ├── 01_ejecucion_main.png.jpg
+    │   ├── 02_filter_map.png.jpg
+    │   ├── 03_valueerror.png.jpg
+    │   ├── 04_singleton_persistencia_sqlite.png.jpg
+    │   ├── 05_factory_roles.png.jpg
+    │   ├── 06_tests_34_ok.png.jpg
+    │   └── README.md
+    │
+    ├── informe/
+    │   └── .gitkeep
+    │
+    └── uml/
+        ├── .gitkeep
+        ├── ValleSalud_UML_Final.drawio
+        ├── ValleSalud_UML_Final.png
+        └── ValleSalud_UML_Final.puml
+
+
+DESCRIPCIÓN DE LOS COMPONENTES
+
+
+1. src/
+
+Contiene el código fuente de ValleSalud.
+
+src/main.py
+Ejecuta la demostración integrada del prototipo y relaciona los
+principales componentes implementados.
+
+
+2. src/dominio/
+
+Contiene las entidades principales del sistema.
+
+paciente.py
+Representa la información del paciente y sus citas.
+
+cita.py
+Representa una cita, sus datos básicos de atención, observaciones
+y medicamentos asociados.
+
+medicamento.py
+Representa la información básica de un medicamento.
+
+usuario.py
+Contiene la clase base Usuario y las especializaciones correspondientes
+a los roles administrativo y asistencial.
+
+
+3. src/servicios/
+
+Contiene la lógica de consulta, procesamiento y validación.
+
+filtros.py
+Implementa búsquedas, filtros y transformaciones de colecciones,
+incluyendo operaciones mediante filter() y map().
+
+reportes.py
+Contiene las funciones utilizadas para generar reportes del sistema.
+
+validaciones.py
+Centraliza las reglas de validación de los datos de entrada y el
+manejo de valores incorrectos mediante excepciones controladas.
+
+
+4. src/persistencia/
+
+Contiene los componentes relacionados con SQLite.
+
+conexion.py
+Administra la creación y configuración de la base de datos.
+
+repositorios.py
+Implementa las operaciones necesarias para guardar, consultar,
+actualizar y eliminar información persistida.
+
+
+5. src/patrones/
+
+Contiene los patrones de diseño implementados.
+
+singleton_db.py
+Implementa el patrón Singleton para administrar una única instancia
+de conexión SQLite.
+
+usuario_factory.py
+Implementa el patrón Factory para crear usuarios según el rol
+solicitado.
+
+
+6. tests/
+
+Contiene la suite de pruebas automatizadas.
+
+test_dominio.py
+Comprueba las entidades y relaciones principales del dominio.
+
+test_consultas.py
+Comprueba búsquedas, filtros, consultas y funciones de orden superior.
+
+test_validaciones.py
+Comprueba entradas válidas, inválidas y manejo de ValueError.
+
+test_persistencia.py
+Comprueba las operaciones de almacenamiento, consulta, actualización,
+eliminación y relaciones en SQLite.
+
+test_patrones.py
+Comprueba Singleton, Factory, roles, permisos y casos de rol inválido.
+
+
+7. docs/
+
+Contiene la documentación y las evidencias del proyecto.
+
+docs/declaracion_ia/
+Contiene el formato institucional de declaración de uso de
+Inteligencia Artificial.
+
+docs/evidencias/
+Contiene las capturas correspondientes a la ejecución del programa,
+programación funcional, manejo de excepciones, persistencia,
+Singleton, Factory, roles y ejecución de las 34 pruebas automatizadas.
+
+docs/informe/
+Espacio destinado a la versión final del informe técnico.
+
+docs/uml/
+Contiene el diagrama UML definitivo en formatos Draw.io, PNG
+y PlantUML.
+
+
+NOTA
+
+Las carpetas __pycache__ y los archivos .pyc no se incluyen en esta
+estructura, debido a que son generados automáticamente por Python y
+no forman parte del código fuente ni de la documentación del proyecto.
+
+La versión final del proyecto implementa Programación Orientada a
+Objetos y programación funcional. La programación orientada a eventos
+fue evaluada durante el diseño, pero no forma parte de la implementación
+final por consola.

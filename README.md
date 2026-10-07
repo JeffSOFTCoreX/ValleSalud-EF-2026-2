@@ -1,27 +1,30 @@
 # Sistema ValleSalud
 
-Proyecto académico del curso Lenguajes de Programación.
+Proyecto del curso Lenguajes de Programación.
 
 ## Descripción
 
-ValleSalud es un prototipo académico para la gestión básica de información de un centro de salud rural ficticio. El sistema integra diferentes componentes dentro de un mismo flujo, incluyendo registro y consulta de pacientes, gestión de citas y medicamentos, validaciones, persistencia local y control básico de permisos.
+ValleSalud es un prototipo académico para la gestión básica de información de un centro de salud rural ficticio.
 
-La versión final implementa Programación Orientada a Objetos y programación funcional. La programación orientada a eventos y una posible interfaz gráfica fueron analizadas durante el diseño, pero no forman parte de la implementación final por consola.
+El sistema integra diferentes componentes dentro de un mismo flujo, incluyendo registro y consulta de pacientes, gestión de citas y medicamentos, validación de entradas, persistencia local con SQLite, control básico de roles y permisos, patrones de diseño y pruebas automatizadas.
+
+La versión final implementa Programación Orientada a Objetos y programación funcional. La programación orientada a eventos fue analizada durante el diseño, pero no forma parte de la implementación final debido a que el módulo funciona mediante consola.
 
 ## Tecnologías utilizadas
 
 - Python 3.x
 - SQLite
 - `unittest`
-- Git y GitHub
+- Git
+- GitHub
 
 ## Paradigmas aplicados
 
 ### Programación Orientada a Objetos
 
-Se utiliza para representar las principales entidades del sistema mediante clases, atributos, métodos, encapsulamiento, herencia y relaciones entre objetos.
+Se utiliza para representar las entidades principales del sistema mediante clases, atributos, métodos, encapsulamiento, herencia y relaciones entre objetos.
 
-Clases principales:
+Las principales entidades son:
 
 - `Paciente`
 - `Cita`
@@ -32,87 +35,184 @@ Clases principales:
 
 ### Programación funcional
 
-Se utiliza para realizar consultas y transformaciones sobre colecciones de objetos, incluyendo el uso de funciones de orden superior como `filter()` y `map()`.
+Se utiliza para realizar consultas, filtros y transformaciones sobre colecciones de objetos.
+
+La implementación utiliza funciones de orden superior como:
+
+- `filter()`
+- `map()`
 
 ### Programación orientada a eventos
 
-Fue evaluada como alternativa para una posible interfaz gráfica, pero no se implementó en la versión final porque el módulo funciona por consola.
+Fue analizada como una alternativa para una posible interfaz gráfica. Sin embargo, no se incorporó en la versión final porque el sistema funciona mediante consola y los criterios de aceptación definidos no requieren una interfaz basada en eventos.
 
 ## Patrones de diseño
 
-- **Singleton:** gestiona una única instancia de conexión SQLite mediante `ConexionSingleton`.
-- **Factory:** `UsuarioFactory` crea usuarios según su rol.
+El proyecto utiliza dos patrones de diseño:
+
+- **Singleton:** permite administrar una única instancia de conexión SQLite mediante `ConexionSingleton`.
+- **Factory:** permite crear usuarios administrativos o asistenciales mediante `UsuarioFactory`, según el rol solicitado.
 
 ## Funcionalidades principales
 
-- Registro y consulta de pacientes.
-- Gestión de citas.
-- Registro y consulta de medicamentos y asociación de medicamentos a citas.
-- Validación de entradas y manejo controlado de excepciones.
-- Búsquedas y filtros, incluyendo `filter()` y `map()`.
-- Persistencia local en SQLite.
-- Roles y permisos básicos.
-- Generación de reporte general.
-- Pruebas automatizadas.
+El prototipo permite:
+
+- Registrar y consultar pacientes.
+- Gestionar citas vinculadas con pacientes.
+- Registrar información básica de atención.
+- Registrar y consultar medicamentos.
+- Asociar medicamentos a citas.
+- Buscar y filtrar información.
+- Aplicar transformaciones mediante `filter()` y `map()`.
+- Validar entradas.
+- Manejar excepciones de forma controlada.
+- Guardar y recuperar información mediante SQLite.
+- Diferenciar permisos según el rol del usuario.
+- Generar un reporte general.
+- Ejecutar pruebas automatizadas.
 
 ## Estructura del proyecto
 
 ```text
 ValleSalud-EF-2026-2/
+│
 ├── src/
 │   ├── dominio/        Clases principales del sistema
 │   ├── servicios/      Consultas, filtros, reportes y validaciones
 │   ├── persistencia/   Conexión SQLite y repositorios
 │   ├── patrones/       Singleton y Factory
 │   └── main.py         Demostración integrada del sistema
+│
 ├── tests/              Pruebas automatizadas
-├── data/               Ubicación de la base local de prueba
+├── data/               Datos o base SQLite local
+│
 ├── docs/
-│   ├── uml/            Diagrama UML final
-│   └── evidencias/     Capturas reales de ejecución, funcionalidades y pruebas
+│   ├── uml/            Diagrama UML definitivo
+│   ├── informe/        Documentación del informe
+│   ├── declaracion_ia/ Declaración institucional de uso de IA
+│   └── evidencias/     Evidencias de ejecución y pruebas
+│
 ├── requirements.txt
+├── ESTRUCTURA_REPOSITORIO.txt
+├── INSTRUCCIONES_EQUIPO.md
 └── README.md
 ```
 
+## Requisitos
+
+Para ejecutar el proyecto se requiere:
+
+- Python 3.x.
+- Git, únicamente si se desea clonar el repositorio.
+
+La versión actual utiliza principalmente módulos incluidos en la biblioteca estándar de Python, entre ellos `sqlite3` y `unittest`.
+
+## Instalación
+
+1. Clonar el repositorio:
+
+```bash
+git clone https://github.com/JeffSOFTCoreX/ValleSalud-EF-2026-2.git
+```
+
+2. Ingresar a la carpeta del proyecto:
+
+```bash
+cd ValleSalud-EF-2026-2
+```
+
+3. Verificar la instalación de Python:
+
+```bash
+python --version
+```
+
+No se requiere configurar un servidor de base de datos externo, ya que el proyecto utiliza SQLite.
+
 ## Ejecución
 
-Desde la carpeta raíz del repositorio, ejecutar:
+Desde la carpeta raíz del repositorio ejecutar:
 
 ```bash
 python -m src.main
 ```
 
-La demostración se ejecuta en consola. La conexión SQLite predeterminada utiliza `data/vallesalud.db`; los archivos de base local están excluidos del control de versiones.
+La demostración principal integra en un mismo flujo:
+
+- creación de pacientes, citas y medicamentos;
+- relaciones entre objetos;
+- consultas y filtros;
+- programación funcional mediante `filter()` y `map()`;
+- validación de entradas;
+- manejo de excepciones;
+- persistencia SQLite;
+- patrones Singleton y Factory;
+- roles y permisos;
+- generación del reporte general.
 
 ## Pruebas automatizadas
 
-Para ejecutar toda la suite:
+Para ejecutar toda la suite de pruebas:
 
 ```bash
-python -m unittest discover tests -v
+python -m unittest discover -s tests -v
 ```
 
-**Resultado verificado:** `Ran 34 tests` y `OK`. Las pruebas cubren dominio, consultas, validaciones, persistencia, patrones de diseño, roles y permisos.
+Las pruebas verifican componentes del dominio, consultas, filtros, validaciones, persistencia, patrones de diseño, roles y permisos.
+
+En la ejecución final del equipo se obtuvieron:
+
+```text
+Ran 34 tests
+
+OK
+```
+
+Esto corresponde a 34 pruebas ejecutadas correctamente, sin errores ni fallos.
+
+## Persistencia
+
+La aplicación utiliza SQLite para almacenar la información de las entidades principales.
+
+La capa de persistencia administra pacientes, citas y medicamentos, así como las relaciones correspondientes.
+
+Durante las pruebas puede utilizarse una base de datos en memoria mediante `:memory:` para ejecutar escenarios reproducibles sin generar archivos residuales.
 
 ## UML
 
-El diagrama UML final se encuentra en `docs/uml/`. Representa clases, atributos, métodos, relaciones y los patrones Singleton y Factory de acuerdo con la implementación final.
+El diagrama UML definitivo del proyecto se almacena en:
+
+```text
+docs/uml/
+```
+
+El modelo debe representar únicamente las clases correspondientes a la implementación final, incluyendo sus relaciones, multiplicidades y los patrones Singleton y Factory.
 
 ## Evidencias
 
-La carpeta `docs/evidencias/` contiene siete capturas reales agregadas al repositorio:
+Las evidencias de ejecución del sistema y de las pruebas automatizadas se almacenan en:
 
-- **Ejecución del programa principal:** `01_ejecucion_main.png.jpg` y `01b_ejecucion_main_final.jpg`.
-- **Programación funcional con `filter()` y `map()`:** `02_filter_map.png.jpg`.
-- **Manejo de una entrada inválida (`ValueError`):** `03_valueerror.png.jpg`.
-- **Singleton y persistencia en SQLite:** `04_singleton_persistencia_sqlite.png.jpg`.
-- **Factory, roles y permisos:** `05_factory_roles.png.jpg`.
-- **Pruebas automatizadas:** `06_tests_34_ok.png.jpg`, que muestra `Ran 34 tests` y `OK`.
+```text
+docs/evidencias/
+```
 
-La descripción completa de las capturas está en [`docs/evidencias/README.md`](docs/evidencias/README.md).
+Estas evidencias permiten comprobar el funcionamiento de la demostración principal, la programación funcional, el manejo de excepciones, la persistencia, los patrones de diseño, los roles y la ejecución de las pruebas automatizadas.
 
-## Datos y alcance
+## Datos personales
 
-El proyecto utiliza exclusivamente datos ficticios creados con fines académicos. No se deben incorporar credenciales, contraseñas, tokens, claves privadas ni datos personales reales.
+El proyecto utiliza exclusivamente datos ficticios creados con fines académicos.
 
-ValleSalud es un prototipo académico y no constituye un sistema clínico listo para producción. No incluye historia clínica electrónica completa, autenticación clínica avanzada, interoperabilidad con sistemas externos, infraestructura en nube ni operación multisede.
+No deben incorporarse al repositorio:
+
+- datos personales reales;
+- contraseñas;
+- tokens;
+- credenciales;
+- claves privadas;
+- información sensible.
+
+## Alcance
+
+ValleSalud es un prototipo académico y no constituye un sistema clínico listo para producción.
+
+La versión actual no incluye historia clínica electrónica completa, autenticación clínica avanzada, interoperabilidad con sistemas externos de salud, infraestructura en nube, laboratorio, imágenes médicas, facturación ni operación multisede.
