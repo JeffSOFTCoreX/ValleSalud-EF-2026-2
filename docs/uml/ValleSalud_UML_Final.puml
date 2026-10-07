@@ -1,4 +1,5 @@
 @startuml ValleSalud_UML_Final
+
 skinparam classAttributeIconSize 0
 skinparam shadowing false
 hide empty members
@@ -19,6 +20,7 @@ class Paciente {
   +cantidad_citas(): int
   +__str__(): str
 }
+
 class Cita {
   -_codigo: str
   -_fecha: str
@@ -37,6 +39,7 @@ class Cita {
   +resumen(): str
   +__str__(): str
 }
+
 class Medicamento {
   -_nombre: str
   -_dosis: str
@@ -48,6 +51,7 @@ class Medicamento {
   +indicacion(): str
   +__str__(): str
 }
+
 class Usuario {
   -_identificacion: str
   -_nombre: str
@@ -59,15 +63,19 @@ class Usuario {
   +tiene_permiso(permiso): bool
   +__str__(): str
 }
+
 class UsuarioAdministrativo {
   +tiene_permiso(permiso): bool
 }
+
 class UsuarioAsistencial {
   +tiene_permiso(permiso): bool
 }
+
 class UsuarioFactory <<Factory>> {
   +crear_usuario(rol, identificacion, nombre): Usuario
 }
+
 class ConexionSingleton <<Singleton>> {
   -_instancia
   -_conexion
@@ -79,8 +87,12 @@ class ConexionSingleton <<Singleton>> {
 
 UsuarioAdministrativo --|> Usuario
 UsuarioAsistencial --|> Usuario
+
 Paciente "1" -- "0..*" Cita
-Cita "1" o-- "0..*" Medicamento
+
+Cita "0..*" o-- "0..*" Medicamento
+
 UsuarioFactory ..> UsuarioAdministrativo : crea
 UsuarioFactory ..> UsuarioAsistencial : crea
+
 @enduml
