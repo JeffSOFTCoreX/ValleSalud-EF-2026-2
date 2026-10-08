@@ -95,4 +95,12 @@ Cita "0..*" o-- "0..*" Medicamento
 UsuarioFactory ..> UsuarioAdministrativo : crea
 UsuarioFactory ..> UsuarioAsistencial : crea
 
+
+note bottom of Paciente
+  Los atributos con "-" son privados.
+  El acceso público se realiza mediante propiedades;
+  en Paciente, identificación, nombre, edad y teléfono
+  disponen además de setters validados.
+end note
+
 @enduml
